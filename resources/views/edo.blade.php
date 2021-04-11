@@ -9,7 +9,11 @@
 </head>
 <body>
 
-    <canvas id="myChart" width="400" height="400"></canvas>
+    <div class="chart-container"
+            style="height:40vh; width:80vw"
+    >
+        <canvas id="myChart"></canvas>
+    </div>
 
     <script src="{{ asset('js/app.js')}}"></script>
 
