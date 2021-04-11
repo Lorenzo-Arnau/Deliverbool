@@ -1,3 +1,4 @@
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
