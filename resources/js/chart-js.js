@@ -22,7 +22,7 @@ import Chart from 'chart.js/auto';
 var ctx = document.getElementById('myChart');
 var myChart = new Chart(ctx, {
     // nel type si possono usare queste chiavi: line, bar, radar, doughnut, polar, bubble e scatter
-    type: 'radar',
+    type: 'bar',
     data: {
         labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
                 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
