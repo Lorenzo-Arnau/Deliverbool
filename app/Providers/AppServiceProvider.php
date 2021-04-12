@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use Braintree;
 use Illuminate\Support\ServiceProvider;
-use Braintree\Configuration;
 
 use Braintree\Gateway;
 
