@@ -1,69 +1,15 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html>
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+        <title>example</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <!-- includes the Braintree JS client SDK -->
+        <script src="https://js.braintreegateway.com/web/dropin/1.27.0/js/dropin.min.js"></script>
+        <!-- includes jQuery -->
+        <script src="http://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
     </head>
     <body>
+
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -78,23 +24,31 @@
                     @endauth
                 </div>
             @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
+            <div id="dropin-wrapper">
+        <div id="checkout-message"></div>
+        <div id="dropin-container"></div>
+        <button id="submit-button">Submit payment</button>
         </div>
-    </body>
+        <script>
+                var button = document.querySelector("#submit-button");
+                braintree.dropin.create({
+                authorization: 'sandbox_x6mvdvj5_r7czy6mhvckbb4v2' ,
+                container: "#dropin-container"
+                }, function (createErr, instance) {
+                button.addEventListener("click", function () {
+                    instance.requestPaymentMethod(function (err, payload) {
+                        $.get("{{ route("payment.make") }}", {payload}, function (response) {
+                if (response.success) {
+                    alert("Payment successfull!");
+                } else {
+                    alert("Payment failed");
+                }
+            }, "json");
+                });
+            });
+        });
+    </script>
+</body>
 </html>
+
+
