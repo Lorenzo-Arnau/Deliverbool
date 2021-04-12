@@ -6,6 +6,10 @@ use Braintree;
 use Illuminate\Support\ServiceProvider;
 use Braintree\Configuration;
 
+use Braintree\Gateway;
+
+use Braintree\Configuration;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**

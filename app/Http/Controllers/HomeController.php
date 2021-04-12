@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Braintree\Gateway as Gateway;
+use Braintree\Transaction as Transaction;
+
 class HomeController extends Controller
 {
     /**
@@ -25,4 +28,6 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+
 }

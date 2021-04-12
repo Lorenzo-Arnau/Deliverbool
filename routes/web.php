@@ -13,13 +13,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/chartjs', function () {
+    return view('chart-js');
+});
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/braintree', function () {
+    return view('braintree');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get("/payment/make", "PaymentsController@make")->name("payment.make");
+Route::get('/payment/make', 'PaymentsController@make')->name('payment.make');
